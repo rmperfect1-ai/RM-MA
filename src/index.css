@@ -1,0 +1,191 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-obsidian: #0A0806;
+    --surface-elevated: #14100C;
+    --surface-card: #19140F;
+    --gold-primary: #C9A84C;
+    --gold-light: #E6CB7D;
+    --ivory-text: #F5EDD6;
+    --ivory-muted: #B8AE98;
+    --terracotta: #8B3A2A;
+    --emerald-muted: #2D4A3E;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #0A0806;
+    color: #F5EDD6;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: #0A0806;
+    color: #F5EDD6;
+  }
+}
+
+.font-display {
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+}
+
+.font-sans-ui {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Golden shimmer text effect for hero display title */
+@keyframes goldShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gold-shimmer-text {
+  background: linear-gradient(
+    110deg,
+    #C9A84C 0%,
+    #F5EDD6 28%,
+    #E6CB7D 48%,
+    #C9A84C 68%,
+    #F5EDD6 88%,
+    #C9A84C 100%
+  );
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: goldShimmer 7s ease-in-out infinite;
+}
+
+@keyframes heroFadeRise {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-orchestrate-1 {
+  animation: heroFadeRise 750ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-orchestrate-2 {
+  opacity: 0;
+  animation: heroFadeRise 750ms cubic-bezier(0.16, 1, 0.3, 1) 140ms forwards;
+}
+
+.hero-orchestrate-3 {
+  opacity: 0;
+  animation: heroFadeRise 750ms cubic-bezier(0.16, 1, 0.3, 1) 280ms forwards;
+}
+
+/* Crisp 3D luxury card perspective & sharp bevel elevation */
+.tilt-card-wrapper {
+  perspective: 1150px;
+}
+
+.tilt-card-inner {
+  transform-style: preserve-3d;
+  transition:
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 180ms ease;
+  will-change: transform;
+  backface-visibility: hidden;
+  box-shadow:
+    0 18px 36px -14px rgba(0, 0, 0, 0.78),
+    inset 0 1px 0 rgba(230, 203, 125, 0.16);
+}
+
+.tilt-card-inner:hover {
+  box-shadow:
+    0 26px 46px -12px rgba(0, 0, 0, 0.88),
+    0 0 0 1px rgba(230, 203, 125, 0.42),
+    inset 0 1px 0 rgba(230, 203, 125, 0.34);
+}
+
+.tilt-card-media-layer {
+  transform: translateZ(14px);
+  transform-style: preserve-3d;
+}
+
+.tilt-card-depth {
+  transform: translateZ(26px);
+}
+
+.tilt-card-float-price {
+  transform: translateZ(34px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .gold-shimmer-text {
+    animation: none;
+    background-position: 28% 50%;
+  }
+  .hero-orchestrate-1,
+  .hero-orchestrate-2,
+  .hero-orchestrate-3 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .tilt-card-inner {
+    transition: none;
+    transform: none !important;
+  }
+  .tilt-card-media-layer,
+  .tilt-card-depth,
+  .tilt-card-float-price {
+    transform: none;
+  }
+}
+
+/* Crisp printable PDF and receipt export styles */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  header,
+  footer,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+  .printable-document {
+    display: block !important;
+    width: 100% !important;
+    background-color: #ffffff !important;
+    color: #111111 !important;
+    font-size: 11pt !important;
+  }
+  .printable-document table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+  .printable-document th,
+  .printable-document td {
+    border: 1px solid #cccccc !important;
+    padding: 6px 8px !important;
+    color: #111111 !important;
+  }
+  .printable-document th {
+    background-color: #f3f4f6 !important;
+    font-weight: bold !important;
+  }
+}

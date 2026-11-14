@@ -1,0 +1,8 @@
+{
+  "name": "SAYQAL FAMILY RESTAURANT",
+  "description": "Luxury Uzbek fine dining in Tashkent — seasonal Heritage Plov, charcoal grills, handcrafted pastries, and table reservations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
